@@ -81,3 +81,5 @@ index.spec.ts:
  4 expect() calls
 Ran 3 tests across 1 file. [198.00ms]
 ```
+
+<img width="474" height="474" alt="image" src="https://github.com/user-attachments/assets/a34d18b0-ecc9-4d0d-af8a-dea5f8d5dc0e" />
