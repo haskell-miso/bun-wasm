@@ -1,7 +1,7 @@
 :rice: `bun-wasm`
 ====================
 
-Export Haskell functions to WASM modules for use with the [bun](https://bun.com/) test runner.
+Demonstrates how to use exported Haskell functions in WASM modules with the [bun](https://bun.com/) test runner.
 
 ```haskell
 -----------------------------------------------------------------------------
