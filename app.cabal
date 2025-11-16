@@ -27,7 +27,9 @@ executable app
     Main.hs
   build-depends: 
     base < 5,
-    containers >= 0.7
+    containers >= 0.7,
+    jsaddle,
+    jsaddle-wasm
   hs-source-dirs:
     app
   default-language:
