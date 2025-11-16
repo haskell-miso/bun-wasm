@@ -15,7 +15,7 @@ afterEach(() => {
   document.body.innerHTML = '';
 });
 
-const { add, sub, domAppend } = await instance.exports;
+const { add, sub, domAppend, jsaddleAppend } = await instance.exports;
 
 /* tests */
 describe('Should test arithmetic', () => {
@@ -32,11 +32,20 @@ describe('Should test arithmetic', () => {
 });
 
 describe('Should perform DOM operations', () => {
+
   test('DOM append test', () => {
       expect(document.body.childNodes.length).toEqual(0);
       domAppend().then (() => {
         expect(document.body.childNodes.length).toEqual(1);
       });
   });
+
+  test('DOM jsaddle append test', () => {
+      expect(document.body.childNodes.length).toEqual(0);
+      jsaddleAppend().then (() => {
+        expect(document.body.childNodes.length).toEqual(1);
+      });
+  });
+
 });
 
