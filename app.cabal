@@ -1,0 +1,34 @@
+cabal-version:      3.0
+name:               app
+version:            0.1.0.0
+synopsis:           An example of integrating bun with the foreign export functionality in the GHC WASM backend
+description:        Define and export Haskel functions for use with the bun spec runner
+license:            BSD-3-Clause
+license-file:       LICENSE
+author:             dmjio
+maintainer:         code@dmj.io
+copyright:          haskell-miso @ 2025
+category:           Web
+build-type:         Simple
+extra-doc-files:    CHANGELOG.md
+
+common options
+  if arch(wasm32)
+    ghc-options:
+      -no-hs-main
+      -optl-mexec-model=reactor
+    cpp-options:
+      -DWASM
+
+executable app
+  import:
+    options
+  main-is:
+    Main.hs
+  build-depends: 
+    base < 5,
+    containers >= 0.7
+  hs-source-dirs:
+    app
+  default-language:
+    Haskell2010

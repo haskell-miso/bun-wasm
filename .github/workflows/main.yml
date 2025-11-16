@@ -1,0 +1,42 @@
+name: Build and test
+
+on:
+  push:
+    branches: master
+  pull_request:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+     - uses: nixbuild/nix-quick-install-action@v34
+     - uses: actions/checkout@v3.5.3
+     - name: Cancel Previous Runs
+       uses: styfle/cancel-workflow-action@0.9.1
+       with:
+         access_token: ${{ github.token }}
+     - uses: cachix/cachix-action@v16
+       with:
+         name: haskell-miso-cachix
+         authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
+
+     - name: Nix channel update
+       run: nix-channel --add https://nixos.org/channels/nixpkgs-unstable && nix-channel --update
+
+     - name: Bun install
+       run: nix-env -iA bun -f '<nixpkgs>' && bun install
+
+     - name: Build using Nix
+       run: nix develop .#wasm --command bash -c "make"
+
+     - name: Cabal clean
+       run: cabal clean
+
+     - name: Bun test
+       run: bun install && bun test
+
