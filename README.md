@@ -1,4 +1,4 @@
-:rice: `bun-wasm`
+🥟 `bun-wasm`
 ====================
 
 Demonstrates how to use exported Haskell functions in WASM modules with the [bun](https://bun.com/) test runner.
