@@ -1,11 +1,13 @@
 -----------------------------------------------------------------------------
 {-# LANGUAGE CPP #-}
+{-# LANGUAGE MultilineStrings #-}
 -----------------------------------------------------------------------------
 module Main where
 -----------------------------------------------------------------------------
 #ifdef WASM
 foreign export javascript "add" add :: Int -> Int -> Int
 foreign export javascript "sub" sub :: Int -> Int -> Int
+foreign export javascript "domAppend" domAppend :: IO ()
 #endif
 -----------------------------------------------------------------------------
 add :: Int -> Int -> Int
@@ -16,4 +18,9 @@ sub x y = x - y
 -----------------------------------------------------------------------------
 main :: IO ()
 main = pure ()
+-----------------------------------------------------------------------------
+foreign import javascript
+  """
+  document.body.appendChild(document.createElement('div'));
+  """ domAppend :: IO ()
 -----------------------------------------------------------------------------
