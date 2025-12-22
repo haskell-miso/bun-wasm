@@ -5,8 +5,8 @@
 module Main where
 -----------------------------------------------------------------------------
 #ifdef WASM
-foreign export javascript "add" add :: Int -> Int -> Int
-foreign export javascript "sub" sub :: Int -> Int -> Int
+foreign export javascript "add sync" add :: Int -> Int -> Int
+foreign export javascript "sub sync" sub :: Int -> Int -> Int
 foreign export javascript "domAppend" domAppend :: IO ()
 #endif
 -----------------------------------------------------------------------------
